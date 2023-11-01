@@ -1,12 +1,14 @@
-package com.korea.basic2;
+package com.korea.basic2.question;
 
+import com.korea.basic2.answer.Answer;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -21,5 +23,8 @@ public class Question {
   @Column(columnDefinition = "TEXT")
   private String content;
 
-  private LocalDate createDate;
+  private LocalDateTime createDate;
+
+  @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+  private List<Answer> answerList;
 }
